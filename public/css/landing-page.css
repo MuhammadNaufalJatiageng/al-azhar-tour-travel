@@ -1,0 +1,159 @@
+body {
+  background-color: whitesmoke;
+  overflow-x: hidden;
+}
+
+nav {
+  z-index: 100;
+}
+
+.bg-black95 {
+  transition: background 0.7s ease;
+  background-color: white;
+}
+
+.navbar.scrolled {
+  background-color: #fff !important;
+  transition: background-color 200ms linear;
+}
+
+.footer-header h3,
+.footer-header p,
+.footer-icon ul li i,
+.copyright,
+.copyright p a {
+  color: white;
+}
+
+.navbar div.container div img {
+  width: 70px;
+}
+
+/* Floating Button */
+.floating-btn {
+  position: fixed;
+  z-index: 100;
+  right: 10px;
+  bottom: 20px;
+}
+.floating-btn a {
+  display: flex;
+  align-items: center;
+  color: white;
+  text-decoration: none;
+  background-color: rgb(16, 110, 64);
+  border-radius: 35px;
+}
+.floating-btn a small {
+  margin: 0;
+}
+.floating-btn a img {
+  width: 50px;
+  aspect-ratio: 4/4;
+}
+/* End Floating Button */
+
+/* Banner */
+.banner-wrapper,
+.banner-wrapper img,
+.banner-wrapper .overlay {
+  width: 100%;
+  height: 80vh;
+}
+
+.banner-wrapper .overlay {
+  background-color: rgba(0, 0, 0, 0.4);
+  position: absolute;
+  top: 0;
+}
+
+.banner-wrapper img {
+  object-fit: cover;
+}
+/* End Banner */
+
+/* Departure */
+.card {
+  border: none;
+}
+/* End Departure */
+
+/* Partner */
+.partner-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+}
+.partner-wrapper img {
+  width: calc(100% / 4);
+  border: 5px solid rgb(218, 218, 218);
+  border-radius: 3px;
+}
+/* EndPartner */
+
+/* Footer */
+footer {
+  background-color: rgb(41, 41, 41);
+}
+footer,
+.footer-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.footer-icon {
+  width: 100%;
+}
+.footer-icon ul {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+}
+.footer-icon ul li {
+  list-style: none;
+  /* width: 100px; */
+}
+.footer-icon ul li a i {
+  font-size: 1.5rem;
+}
+/* End Footer */
+
+@media only screen and (min-width: 550px) {
+  /* Departure */
+  .departure-wrapper {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .departure-wrapper div.card {
+    width: 47%;
+  }
+  /* End Departure */
+
+  /* Partner */
+  .partner-wrapper img {
+    width: calc(100% / 6);
+  }
+  /* End Partner */
+}
+
+@media only screen and (min-width: 900px) {
+  /* Departure */
+  .departure-wrapper {
+    gap: 30px;
+  }
+
+  .departure-wrapper div.card {
+    width: calc(100% / 4);
+  }
+  /* End Departure */
+
+  /* Partner */
+  .partner-wrapper img {
+    width: calc(100% / 10);
+  }
+  /* End Partner */
+}
