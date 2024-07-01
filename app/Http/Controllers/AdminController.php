@@ -7,7 +7,6 @@ use App\Models\Registrant;
 use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 
 class AdminController extends Controller
@@ -125,6 +124,23 @@ class AdminController extends Controller
     {
         return view('pages.admin.registrant.index', [
             'registrants' => Registrant::all()
+        ]);
+    }
+
+    public function registrantShow(Registrant $registrant, $id)
+    {
+        $data = $registrant::findOrFail($id);
+
+        return view('pages.admin.registrant.show', [
+            'data' => $data,
+            'registrants' => $data->registrantDetails()->get()
+        ]);
+    }
+
+    public function affiliateIndex()
+    {
+        return view('pages.admin.affiliate.index', [
+            'affiliates' => User::where('role', 'affiliate')->get()
         ]);
     }
     

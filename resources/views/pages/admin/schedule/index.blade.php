@@ -26,11 +26,12 @@
                     <thead>
                         <tr>
                             <th>Judul</th>
-                            <th>Deskripsi</th>
                             <th>Tanggal Keberangkatan</th>
                             <th>Harga</th>
                             <th>Maskapai</th>
                             <th>Kategori</th>
+                            <th>Hotel Mekkah</th>
+                            <th>Hotel Madinah</th>
                             <th>Poster</th>
                             <th>Opsi</th>
                         </tr>
@@ -40,11 +41,12 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product->title }}</td>
-                                    <td>{{ $product->description }}</td>
                                     <td>{{ $product->departureDate }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->airline }}</td>
                                     <td>{{ $product->category }}</td>
+                                    <td>{{ $product->hotelMekkah }}</td>
+                                    <td>{{ $product->hotelMadinah }}</td>
                                     <td>{{ $product->poster }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail/{{ $product->id }}" class="btn btn-info">Detail</a>

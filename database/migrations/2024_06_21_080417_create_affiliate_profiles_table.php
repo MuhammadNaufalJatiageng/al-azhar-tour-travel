@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('affiliate_profiles', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id');
-            $table->string('username');
+            $table->string('phone_number');
             $table->string('affiliate_code')->unique();
             $table->timestamps();
         });

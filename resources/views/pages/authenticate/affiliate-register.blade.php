@@ -7,6 +7,17 @@
       <h4 class="mt-4 text-center">Affiliate Register</h4>
 
       <div class="mb-3 w-100">
+        <input type="email" class="form-control @error('email')
+            is-invalid
+        @enderror" placeholder="Email" name="email">
+        @error('email')
+          <div class="invalid-feedback">
+            {{ $message }}
+          </div>
+        @enderror
+      </div>
+
+      <div class="mb-3 w-100">
         <input type="text" class="form-control @error('username')
             is-invalid
         @enderror" placeholder="Username" name="username">
@@ -18,10 +29,10 @@
       </div>
 
       <div class="mb-3 w-100">
-        <input type="email" class="form-control @error('email')
+        <input type="number" class="form-control @error('phoneNumber')
             is-invalid
-        @enderror" placeholder="Email" name="email">
-        @error('email')
+        @enderror" placeholder="Nomor Whatsapp" name="phoneNumber">
+        @error('phoneNumber')
           <div class="invalid-feedback">
             {{ $message }}
           </div>

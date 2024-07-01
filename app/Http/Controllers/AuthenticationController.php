@@ -91,11 +91,13 @@ class AuthenticationController extends Controller
         $validated = $request->validate([
             'username' => 'required|min:3',
             'email' => 'required|email:dns',
+            'phoneNumber' => 'required',
             'password' => 'required|min:8',
         ]);
         
         $validated['name'] = $request->username;
         $validated['email'] = $request->email;
+        $validated['phone_number'] = $request->phoneNumber;
         $validated['role'] = 'affiliate';
         $validated['password'] = bcrypt($request->password);
 

@@ -9,10 +9,7 @@
    <!-- DataTales -->
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <form class="d-flex col-md-6" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                <button class="btn btn-outline-primary" type="submit">Search</button>
-              </form>
+            <h6 class="m-0 font-weight-bold text-primary">Pendaftar</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -20,30 +17,22 @@
                     <thead>
                         <tr>
                             <th>Nama</th>
-                            <th>Email</th>
-                            <th>Nomor Handphone</th>
-                            <th>Paket</th>
-                            <th>Jumlah Peserta</th>
-                            <th>Kode Affiliate</th>
-                            <th>Opsi</th>
+                            <th>Affiliate_code</th>
+                            {{-- <th></th> --}}
                         </tr>
                     </thead>
                     <tbody>
-                        @if ($registrants->count() > 0)
-                        @foreach ($registrants as $registrant)
+                        @if ($affiliates->count() > 0)
+                            @foreach ($affiliates as $affiliate)
                                 <tr>
-                                    <td>{{ $registrant->name }}</td>
-                                    <td>{{ $registrant->email }}</td>
-                                    <td>{{ $registrant->phone_number }}</td>
-                                    <td>{{ $registrant->packet }}</td>
-                                    <td>{{ $registrant->number_of_registrans }}</td>
-                                    <td>{{ $registrant->affiliate_code }}</td>
+                                    <td>{{ $affiliate->name }}</td>
+                                    <td>{{ $affiliate->affiliateProfile->affiliate_code }}</td>
                                     <td class="d-flex justify-content-center gap-2">
-                                        <a href="/admin/pendaftar/{{ $registrant->id }}" class="btn btn-info">Detail</a>
-                                        {{-- <form action="/admin/schedule/delete" method="post">
+                                        <a href="/admin/schedule/detail" class="btn btn-info">Detail</a>
+                                        <form action="/admin/schedule/delete" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form> --}}
+                                        </form>
                                     </td>
                                 </tr>
                             @endforeach

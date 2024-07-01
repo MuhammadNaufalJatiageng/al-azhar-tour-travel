@@ -60,14 +60,20 @@
             <!-- Nav Item-->
             <li class="nav-item {{ Request::is('admin/schedule*') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/schedule">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fa-regular fa-calendar-days"></i>
                     <span>Jadwal</span>
                 </a>
             </li>
             <li class="nav-item {{ Request::is('admin/pendaftar*') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/pendaftar">
-                    <i class="fas fa-fw fa-chart-area"></i>
+                    <i class="fa-solid fa-people-group"></i>
                     <span>Pendaftar</span>
+                </a>
+            </li>
+            <li class="nav-item {{ Request::is('admin/affiliate*') ? 'active' : '' }}">
+                <a class="nav-link" href="/admin/affiliate">
+                    <i class="fa-brands fa-affiliatetheme"></i>
+                    <span>Affliiate</span>
                 </a>
             </li>
 
@@ -89,20 +95,6 @@
                             <button type="button" class="btn-close button-close py-3 " data-bs-dismiss="alert" aria-label="Close"></button>
                         </div>
                     @endif
-
-                    <!-- Topbar Search -->
-                    {{-- <form
-                        class="d-none d-sm-inline-block form-inline mr-auto ml-md-3 my-2 my-md-0 mw-100 navbar-search">
-                        <div class="input-group">
-                            <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..."
-                                aria-label="Search" aria-describedby="basic-addon2">
-                            <div class="input-group-append">        
-                                <button class="btn btn-primary" type="button">
-                                    <i class="fas fa-search fa-sm"></i>
-                                </button>
-                            </div>
-                        </div>
-                    </form> --}}
 
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
