@@ -97,16 +97,16 @@ class AuthenticationController extends Controller
         
         $validated['name'] = $request->username;
         $validated['email'] = $request->email;
-        $validated['phone_number'] = $request->phoneNumber;
         $validated['role'] = 'affiliate';
         $validated['password'] = bcrypt($request->password);
-
+        
         User::create($validated);
-
+        
         $newUser = User::where('email', $request->email)->first();
-
+        
         $userProfle['username'] = $request->username;
         $userProfle['user_id'] = $newUser->id;
+        $userProfle['phone_number'] = $request->phoneNumber;
 
         $userProfle['affiliate_code'] = $this->affiliateCodeGenerate();
 

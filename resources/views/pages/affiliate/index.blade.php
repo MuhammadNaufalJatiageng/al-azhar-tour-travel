@@ -34,7 +34,7 @@
               <li class="nav-item dropdown no-arrow">
                   <div class="btn-group">
                       <button type="button" class="btn dropdown-toggle" data-bs-toggle="dropdown" data-bs-display="static" aria-expanded="false">
-                        {{ auth()->user()->affiliateProfile->username }}
+                        {{ auth()->user()->name }}
                       </button>
                       <ul class="dropdown-menu dropdown-menu-lg-end">
                           <li>
@@ -78,12 +78,14 @@
           <thead>
             <tr>
               <th scope="col">Nama</th>
+              <th scope="col">Nomor Handphone</th>
             </tr>
           </thead>
           <tbody>
             @foreach ($registrants as $registrant)
               <tr>
-                <td>{{ $registrant->fullname }}</td>
+                <td>{{ $registrant->name }}</td>
+                <td>{{ $registrant->phone_number }}</td>
               </tr>
             @endforeach
           </tbody>
