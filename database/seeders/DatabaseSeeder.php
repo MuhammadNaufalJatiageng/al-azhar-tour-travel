@@ -5,6 +5,7 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\AffiliateProfile;
+use App\Models\category;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
@@ -24,5 +25,14 @@ class DatabaseSeeder extends Seeder
             'role' => 'admin',
             'password' => bcrypt('password')
         ]);
+        
+        Category::create([
+            'name' => 'Umrah'
+        ]);
+
+        Category::create([
+            'name' => 'Haji'
+        ]);
+
     }
 }

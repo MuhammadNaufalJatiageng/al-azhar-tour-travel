@@ -57,8 +57,6 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
     // Admin Category
     Route::post('/admin/category', [CategoryController::class, 'store']);
-    // Admin Packet
-    Route::post('/admin/packet', [PacketController::class, 'store']);
     // Admin Schedule
     Route::get('/admin/schedule', [AdminController::class, 'scheduleIndex']);
     Route::post('/admin/schedule/store', [AdminController::class, 'scheduleStore']);
