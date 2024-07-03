@@ -4,8 +4,11 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AffiliateProfileController;
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\PacketController;
 use App\Http\Controllers\RegistrantController;
 use App\Models\Product;
+use Carbon\Carbon;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,9 +22,20 @@ use App\Models\Product;
 */
 
 Route::get('/', function () {
+    $products = Product::all();
+
+    foreach ($products as $product) {
+        if ($product->departureDate < Carbon::now()) {
+            $updateStatus['status'] = false;
+
+            $product->update($updateStatus);
+        }
+    }
+    
     return view('pages.index', [
         "products" => Product::all(),
     ]);
+    
 })->name('home');
 
 Route::get('/admin/login', [AuthenticationController::class, 'adminLoginIndex']);
@@ -40,7 +54,11 @@ Route::get('/affiliate/login',[ AuthenticationController::class, 'affiliateLogin
 Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     // Admin
-    Route::get('/admin/dashboard', [AdminController::class, 'index'])->middleware('auth');
+    Route::get('/admin/dashboard', [AdminController::class, 'index']);
+    // Admin Category
+    Route::post('/admin/category', [CategoryController::class, 'store']);
+    // Admin Packet
+    Route::post('/admin/packet', [PacketController::class, 'store']);
     // Admin Schedule
     Route::get('/admin/schedule', [AdminController::class, 'scheduleIndex']);
     Route::post('/admin/schedule/store', [AdminController::class, 'scheduleStore']);
@@ -50,6 +68,8 @@ Route::middleware('auth')->group(function () {
     // Admin Pendaftar
     Route::get('/admin/pendaftar', [AdminController::class, 'registrantIndex']);
     Route::get('/admin/pendaftar/{id}', [AdminController::class, 'registrantShow']);
+    Route::post('/admin/pendaftar/search', [AdminController::class, 'registrantSearch']);
+    //  Admin Affiliate
     Route::get('/admin/affiliate', [AdminController::class, 'affiliateIndex']);
     // Affiliate
     Route::get('/affiliate/dashboard', [AffiliateProfileController::class, 'index']);

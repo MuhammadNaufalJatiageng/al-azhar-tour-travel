@@ -4,7 +4,7 @@
     
   <form class="form" method="POST" action="/affiliate/register">
       @csrf
-      <h4 class="mt-4 text-center">Affiliate Register</h4>
+      <h4 class="my-4 text-center">Affiliate Register</h4>
 
       <div class="mb-3 w-100">
         <input type="email" class="form-control @error('email')

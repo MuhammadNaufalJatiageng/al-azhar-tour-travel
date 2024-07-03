@@ -60,6 +60,27 @@
       </div>
     </section>
 
+    {{-- Documentation --}}
+    <section class="my-5 d-flex justify-content-center">
+      <div id="documentation" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
+        <div class="carousel-inner ">
+          <div class="carousel-item active text-center">
+            <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>
+          </div>
+          <div class="carousel-item text-center">
+            <iframe src="https://www.youtube.com/embed/LJ_roqc9NoI?autoplay=1&mute=1" class="rounded video"></iframe>
+          </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#documentation" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#documentation" data-bs-slide="next">
+          <span class="carousel-control-next-icon" style="filter: invert(100%)"  aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
+      </div>
+    </section>
+
     <!-- Nearest Departure -->
     <section class="departure mt-5 p-3">
       <h2 class="text-center">Keberangkatan Terdekat</h2>
@@ -93,6 +114,28 @@
         @else
           <P class="text-secondary">Belum ada jadwal keberangkatan</P>
         @endif
+      </div>
+    </section>
+
+    {{-- Testimoni --}}
+    <section class="my-5 d-flex justify-content-center">
+      <div id="testimoni" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
+        <h2 class="text-center mb-3">Testimoni</h2>
+        <div class="carousel-inner ">
+          <div class="carousel-item active text-center">
+            <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>
+          </div>
+          <div class="carousel-item text-center">
+            <iframe src="https://www.youtube.com/embed/LJ_roqc9NoI?autoplay=1&mute=1" class="rounded video"></iframe>
+          </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#testimoni" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
+          <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#testimoni" data-bs-slide="next">
+          <span class="carousel-control-next-icon" style="filter: invert(100%)"  aria-hidden="true"></span>
+          <span class="visually-hidden">Next</span>
+        </button>
       </div>
     </section>
 

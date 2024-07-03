@@ -11,10 +11,11 @@
                 @csrf
                 <div class="input-group mb-3">
                   <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
-                  <select class="form-select" id="inputGroupSelect01" name="category">
-                    <option selected>Kategori...</option>
-                    <option value="haji">Haji</option>
-                    <option value="umrah">Umrah</option>
+                  <select class="form-select" id="category_id" name="category_id">
+                    <option selected disabled>Kategori...</option>
+                    @foreach ($categories as $category)
+                      <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                   </select>
                 </div>
               

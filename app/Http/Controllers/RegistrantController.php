@@ -3,16 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\Models\AffiliateProfile;
+use App\Models\Product;
 use App\Models\Registrant;
 use App\Models\RegistrantDetail;
-use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class RegistrantController extends Controller
 {
     public function index($affiliateCode = false)
     {
-        return view('pages.user.first-form', ['affiliateCode' => $affiliateCode ]);
+        return view('pages.user.first-form', [
+            'affiliateCode' => $affiliateCode, 
+            'products' => Product::where('status', true)->get()
+        ]);
     }
 
     public function register(Request $request)

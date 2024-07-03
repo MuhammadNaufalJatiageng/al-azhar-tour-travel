@@ -51,13 +51,11 @@
         is-invalid
     @enderror" id="packet" name="packet" required>
       <option selected disabled>---</option>
-      <option class="fw-bold" disabled>Umrah</option>
-      <option value="august">Umrah Agustus 2024</option>
-      <option value="sept">Umrah September 2024</option>
-      <option value="okto">Umrah OKtober 2024</option>
-      <option value="nov">Umrah November 2024</option>
-      <option class="fw-bold" disabled>Haji</option>
-      <option value="haji">Haji Furoda 2025</option>
+      @foreach ($products as $product)
+        {{-- <option class="fw-bold" disabled>{{ $product->catego }}</option> --}}
+        <option value="{{ $product->title }}">{{ $product->title }}</option>
+          
+      @endforeach
     </select>
     @error('packet')
         <div class="invalid-feedback">

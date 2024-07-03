@@ -9,10 +9,11 @@
    <!-- DataTales -->
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <form class="d-flex col-md-6" role="search">
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+            <form class="d-flex col-md-6" action="/admin/pendaftar/search" method="POST">
+                @csrf
+                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
                 <button class="btn btn-outline-primary" type="submit">Search</button>
-              </form>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -40,10 +41,6 @@
                                     <td>{{ $registrant->affiliate_code }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/pendaftar/{{ $registrant->id }}" class="btn btn-info">Detail</a>
-                                        {{-- <form action="/admin/schedule/delete" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form> --}}
                                     </td>
                                 </tr>
                             @endforeach
@@ -56,9 +53,6 @@
     </div>
 
   
-  @include('pages.admin.schedule.schedule-modal')
-
-
 @endsection
 
 @section('script')

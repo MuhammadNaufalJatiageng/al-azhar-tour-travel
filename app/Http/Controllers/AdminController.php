@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\category;
+use App\Models\Packet;
 use App\Models\Product;
 use App\Models\Registrant;
 use App\Models\User;
@@ -13,7 +15,10 @@ class AdminController extends Controller
 {
     public function index() 
     {
-        return view('pages.admin.dashboard');
+        return view('pages.admin.dashboard', [
+            'categories' => Category::all(),
+            'products' => Product::all()
+        ]);
     }
     
     public function scheduleIndex()
@@ -21,6 +26,7 @@ class AdminController extends Controller
         $products = Product::orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.schedule.index', [
+            'categories' => Category::all(),
             'products' => $products,
         ]);
 
@@ -29,7 +35,7 @@ class AdminController extends Controller
     public function scheduleStore(Request $request)
     {
         $validated =  $request->validate([
-            'category' => 'required', 
+            'category_id' => 'required', 
             'title' => 'required', 
             'price' => 'required', 
             'departureDate' => 'required', 
@@ -39,7 +45,7 @@ class AdminController extends Controller
             'airline' => 'required', 
         ]);
 
-        $validated['category'] = $request->category;
+        $validated['category_id'] = $request->category_id;
         $validated['title'] = $request->title;
         $validated['price'] = $request->price;
         $validated['departureDate'] = Carbon::parse($request->departureDate);
@@ -68,7 +74,8 @@ class AdminController extends Controller
     {
         $product = Product::find($id);
         return view('pages.admin.schedule.detail', [
-            'product' => $product
+            'product' => $product,
+            'categories' => category::all()
         ]);
     }
     
@@ -77,10 +84,11 @@ class AdminController extends Controller
         $product = Product::find($id);
 
         $validated =  $request->validate([
-            'category' => 'required', 
+            'category_id' => 'required', 
             'title' => 'required', 
-            'description' => 'required', 
             'price' => 'required', 
+            'hotelMekkah' => 'required', 
+            'hotelMadinah' => 'required', 
             'departureDate' => 'required', 
             'poster' => 'image|mimes:jpeg,jpg,png', 
             'airline' => 'required', 
@@ -124,6 +132,15 @@ class AdminController extends Controller
     {
         return view('pages.admin.registrant.index', [
             'registrants' => Registrant::all()
+        ]);
+    }
+
+    public function registrantSearch(Request $request)
+    {
+        $results = Registrant::where('name', $request->keyword)->get();
+
+        return view('pages.admin.registrant.index', [
+            'registrants' => $results
         ]);
     }
 

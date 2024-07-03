@@ -17,7 +17,7 @@
                     <thead>
                         <tr>
                             <th>Nama</th>
-                            <th>Affiliate_code</th>
+                            <th>Kode Affiliate</th>
                             {{-- <th></th> --}}
                         </tr>
                     </thead>
@@ -43,10 +43,6 @@
             </div>
         </div>
     </div>
-
-  
-  @include('pages.admin.schedule.schedule-modal')
-
 
 @endsection
 

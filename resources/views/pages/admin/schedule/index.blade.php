@@ -44,10 +44,12 @@
                                     <td>{{ $product->departureDate }}</td>
                                     <td>{{ $product->price }}</td>
                                     <td>{{ $product->airline }}</td>
-                                    <td>{{ $product->category }}</td>
+                                    <td>{{ $product->category->name }}</td>
                                     <td>{{ $product->hotelMekkah }}</td>
                                     <td>{{ $product->hotelMadinah }}</td>
-                                    <td>{{ $product->poster }}</td>
+                                    <td>
+                                        <a href="/product-img/{{ $product->poster }}" download>{{ $product->poster }}</a>
+                                    </td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail/{{ $product->id }}" class="btn btn-info">Detail</a>
                                         <form action="/admin/schedule/delete/{{ $product->id }}" method="post">
