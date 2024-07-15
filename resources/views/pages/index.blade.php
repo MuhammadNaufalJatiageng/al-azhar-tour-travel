@@ -63,6 +63,7 @@
     {{-- Documentation --}}
     <section class="my-5 d-flex justify-content-center">
       <div id="documentation" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
+        <h2 class="text-center mb-3">Testimoni Haji dan Umrah</h2>
         <div class="carousel-inner ">
           <div class="carousel-item active text-center">
             <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>
@@ -112,7 +113,7 @@
             </div>
           @endforeach
         @else
-          <P class="text-secondary">Belum ada jadwal keberangkatan</P>
+          <P class="text-secondary text-center">Belum ada jadwal keberangkatan</P>
         @endif
       </div>
     </section>
@@ -120,7 +121,7 @@
     {{-- Testimoni --}}
     <section class="my-5 d-flex justify-content-center">
       <div id="testimoni" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
-        <h2 class="text-center mb-3">Testimoni</h2>
+        <h2 class="text-center mb-3">Testimoni Haji dan Umrah</h2>
         <div class="carousel-inner ">
           <div class="carousel-item active text-center">
             <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>

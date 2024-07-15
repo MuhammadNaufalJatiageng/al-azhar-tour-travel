@@ -27,13 +27,13 @@
                                 <tr>
                                     <td>{{ $affiliate->name }}</td>
                                     <td>{{ $affiliate->affiliateProfile->affiliate_code }}</td>
-                                    <td class="d-flex justify-content-center gap-2">
+                                    {{-- <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail" class="btn btn-info">Detail</a>
                                         <form action="/admin/schedule/delete" method="post">
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         @endif
