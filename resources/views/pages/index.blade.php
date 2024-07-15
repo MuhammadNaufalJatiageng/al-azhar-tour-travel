@@ -38,7 +38,7 @@
             <a class="nav-link fw-bold" aria-current="page" href="#">Home</a>
             <a class="nav-link" href="#">Paket Tour</a>
             <a class="nav-link me-3" href="#">Tentang Kami</a>
-            <a class="btn btn-success" href="#">Kontak Kami</a>
+            <a class="btn btn-success" href="https://wa.me/62895391442002">Kontak Kami</a>
           </div>
         </div>
       </div>
@@ -46,7 +46,7 @@
 
     <!-- FLoating Button -->
     <section class="floating-btn">
-      <a href="https://wa.me/6281284920064" class="pe-3">
+      <a href="https://wa.me/62895391442002" class="pe-3">
         <img src="{{ asset('img/whatsapp.png') }}" alt="" />
         <small class="p-2 fw-bold">Chat kami untuk informasi Haji/Umrah</small>
       </a>
@@ -55,7 +55,7 @@
     <!-- Banner -->
     <section class="banner">
       <div class="banner-wrapper">
-        <img src="{{ asset('img/banner.jpg') }}" alt="" />
+        <img src="{{ asset('img/new-banner.jpg') }}" alt="" />
         <div class="overlay"></div>
       </div>
     </section>
@@ -92,7 +92,7 @@
               <img src='product-img/{{ $product->poster }}' class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title">{{ $product->title }}</h5>
-                <p class="card-text"> Kebereangkatan {{ $product->departureDate }}</p>
+                <p class="card-text"> Keberangkatan {{ $product->departureDate }}</p>
                 <ul>
                   <li class="mb-2">
                     <p class="m-0">Hotel Mekkah</p>

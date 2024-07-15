@@ -68,7 +68,7 @@ nav {
 }
 
 .banner-wrapper .overlay {
-    background-color: rgba(0, 0, 0, 0.4);
+    /* background-color: rgba(0, 0, 0, 0.4); */
     position: absolute;
     top: 0;
 }
