@@ -47,7 +47,10 @@
 ::before {
     box-sizing: border-box;
 }
-
+.partner-img {
+    width: 100px;
+    aspect-ratio: 16/9;
+}
 .brand-logo {
     width: 50px;
 }

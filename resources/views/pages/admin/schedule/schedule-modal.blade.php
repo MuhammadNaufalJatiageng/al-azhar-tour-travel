@@ -7,7 +7,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-            <form action="/admin/schedule/store" method="post" enctype="multipart/form-data" id="scheduleForm">
+            <form action="/admin/schedule" method="post" enctype="multipart/form-data" id="scheduleForm">
                 @csrf
                 <div class="input-group mb-3">
                   <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
@@ -52,8 +52,10 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Maskapai</label>
                     <select class="form-select" id="inputGroupSelect01" name="airline">
-                      <option selected>Pilih maskapai...</option>
-                      <option value="Garuda Indonesia">Garuda Indonesia</option>
+                      <option selected disabled>Pilih maskapai...</option>
+                      @foreach ($airlines as $airline)
+                        <option value="{{ $airline->name }}">{{ $airline->name }}</option>
+                      @endforeach
                     </select>
                 </div>
             </form>

@@ -5,7 +5,9 @@ namespace Database\Seeders;
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 use App\Models\AffiliateProfile;
+use App\Models\Airline;
 use App\Models\category;
+use App\Models\Partner;
 use App\Models\User;
 use App\Models\UserProfile;
 use Illuminate\Database\Seeder;
@@ -34,5 +36,21 @@ class DatabaseSeeder extends Seeder
             'name' => 'Haji'
         ]);
 
+        Airline::create([
+            'name' => "Garuda Indonesia"
+        ]);
+
+        Airline::create([
+            'name' => "Saudi Airlines"
+        ]);
+
+        Partner::create([
+            'image' => 'new-banner.jpg',
+            'banner' => true
+        ]);
+        Partner::create([
+            'image' => 'garuda-indonesia.png',
+            'banner' => false
+        ]);
     }
 }

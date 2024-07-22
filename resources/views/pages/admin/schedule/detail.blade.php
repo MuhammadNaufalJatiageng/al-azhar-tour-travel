@@ -7,6 +7,7 @@
 @section('content')
     <section class="bg-light p-4 shadow mb-4">
         <form action="/admin/schedule/update/{{ $product->id }}" method="post"  enctype="multipart/form-data">
+            @method('PUT')
             @csrf
             <div class="input-group mb-3">
               <label class="input-group-text" for="category_id">Kategori</label>

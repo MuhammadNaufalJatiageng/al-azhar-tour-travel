@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Airline;
 use App\Models\category;
 use App\Models\Packet;
+use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Registrant;
 use App\Models\User;
@@ -17,16 +19,20 @@ class AdminController extends Controller
     {
         return view('pages.admin.dashboard', [
             'categories' => Category::all(),
+            'airlines' => Airline::all(),
+            'partners' =>Partner::where('banner', 0)->get(),
+            'banner' => Partner::where('banner', 1)->first(),
             'products' => Product::all()
         ]);
     }
-    
+// sCHEDULE
     public function scheduleIndex()
     {
         $products = Product::orderBy('created_at', 'desc')->get();
 
         return view('pages.admin.schedule.index', [
             'categories' => Category::all(),
+            'airlines' => Airline::all(),
             'products' => $products,
         ]);
 
@@ -127,7 +133,9 @@ class AdminController extends Controller
         return back()->with("success", "Jadwal telah dihapus.");
 
     }
-
+// eND sCHEDULE
+    
+// REGISTRANT
     public function registrantIndex()
     {
         return view('pages.admin.registrant.index', [
@@ -153,12 +161,15 @@ class AdminController extends Controller
             'registrants' => $data->registrantDetails()->get()
         ]);
     }
+// END REGISTRANT
 
+// AFFILIATE
     public function affiliateIndex()
     {
         return view('pages.admin.affiliate.index', [
             'affiliates' => User::where('role', 'affiliate')->get()
         ]);
     }
+// END AFFILIATE
     
 }

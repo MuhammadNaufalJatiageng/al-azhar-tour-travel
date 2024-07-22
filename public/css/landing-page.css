@@ -3,10 +3,13 @@ body {
     overflow-x: hidden;
 }
 
+.text-orange {
+    color: rgb(210, 98, 0);
+}
+
 .video {
     width: 80%;
     aspect-ratio: 16/9;
-    /* height: 300px; */
 }
 
 nav {
@@ -23,6 +26,10 @@ nav {
     transition: background-color 200ms linear;
 }
 
+.navbar-nav {
+    font-size: large;
+}
+
 .footer-header h3,
 .footer-header p,
 .footer-icon ul li i,
@@ -33,6 +40,10 @@ nav {
 
 .navbar div.container div img {
     width: 70px;
+}
+
+.nav-link:hover {
+    color: rgb(210, 98, 0);
 }
 
 /* Floating Button */
@@ -95,6 +106,7 @@ nav {
     width: calc(100% / 4);
     border: 5px solid rgb(218, 218, 218);
     border-radius: 3px;
+    aspect-ratio: 16/9;
 }
 /* EndPartner */
 
@@ -125,6 +137,71 @@ footer,
 }
 /* End Footer */
 
+/* About Us */
+.text-lg {
+    font-size: larger;
+}
+
+.parallax {
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    height: 1000px;
+    overflow: hidden;
+}
+.parallax-img {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 170%;
+    background-image: url("../img/about-us-bg.jpg");
+    background-position: center;
+    filter: brightness(50%);
+}
+
+.top,
+.bottom {
+    position: absolute;
+    right: 0;
+    left: 0;
+    height: 50px;
+    background-color: whitesmoke;
+}
+
+.top {
+    top: 0;
+    z-index: 2;
+}
+.bottom {
+    bottom: 0;
+}
+
+.parallax-content {
+    text-align: center;
+    padding: 0 20px;
+    color: white;
+    z-index: 2;
+}
+
+.our-team-items {
+    width: 85%;
+    margin: 0 auto 30px auto;
+}
+
+.our-team-items img {
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+.title {
+    font-size: 2.7rem;
+    font-weight: bold;
+}
+/* End About Us */
+
 @media only screen and (min-width: 550px) {
     /* Departure */
     .departure-wrapper {
@@ -144,6 +221,20 @@ footer,
         width: calc(100% / 6);
     }
     /* End Partner */
+
+    .parallax {
+        height: 800px;
+    }
+
+    .our-team-wrapper {
+        display: flex;
+        justify-content: space-evenly;
+        flex-wrap: wrap;
+    }
+
+    .our-team-items {
+        width: 200px;
+    }
 }
 
 @media only screen and (min-width: 900px) {
@@ -162,4 +253,21 @@ footer,
         width: calc(100% / 10);
     }
     /* End Partner */
+    .parallax {
+        height: 600px;
+    }
+
+    .parallax-content {
+        padding: 0 100px;
+    }
+
+    .our-team-items {
+        width: 300px;
+    }
+}
+
+@media only screen and (min-width: 1200px) {
+    .parallax {
+        height: 500px;
+    }
 }

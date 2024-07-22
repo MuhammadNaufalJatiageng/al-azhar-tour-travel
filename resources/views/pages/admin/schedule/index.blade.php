@@ -53,6 +53,7 @@
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail/{{ $product->id }}" class="btn btn-info">Detail</a>
                                         <form action="/admin/schedule/delete/{{ $product->id }}" method="post">
+                                            @method('DELETE')
                                             @csrf
                                             <button type="submit" class="btn btn-danger">Hapus</button>
                                         </form>
