@@ -68,23 +68,6 @@
         <div class="bottom"></div>
       </div>
 
-    <div class="text-center">
-        <h1 class="mb-2 title">Our Team</h1>
-        <div class="our-team-wrapper p-5">
-            <div class="our-team-items">
-                <img src="{{ asset('/img/altrav-logo.png') }}" alt="">
-                <p class="text-lg">You will find the latest information about our company here. You will find the...</p>
-            </div>
-            <div class="our-team-items">
-                <img src="{{ asset('/img/altrav-logo.png') }}" alt="">
-                <p class="text-lg">You will find the latest information about our company here. You will find the latest...</p>
-            </div>
-            <div class="our-team-items">
-                <img src="{{ asset('/img/altrav-logo.png') }}" alt="">
-                <p class="text-lg">You will find the latest information about our company here. You will find the latest...</p>
-            </div>
-        </div>
-    </div>
 </section>
 @endsection
 

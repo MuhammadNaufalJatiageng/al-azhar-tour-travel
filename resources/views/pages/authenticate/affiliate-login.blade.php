@@ -28,7 +28,7 @@
     </form>
       <p class="signup-link mt-2">
           Belum punya akun?
-          <a href="/affiliate/register">Daftar</a>
+          <a href="/affiliate/register" class="text-decoration-none">Daftar</a>
       </p>
   </form>
 

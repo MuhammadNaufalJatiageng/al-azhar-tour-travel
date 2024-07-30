@@ -38,8 +38,9 @@
           <div class="navbar-nav fw-bold">
             <a class="nav-link {{ Request::is('/') ? 'text-orange' : '' }}" aria-current="page" href="/">Home</a>
             <a class="nav-link {{ Request::is('tour-package') ? 'text-orange' : '' }}" href="/tour-package">Paket Tour</a>
-            <a class="nav-link me-3 {{ Request::is('about-us') ? 'text-orange' : '' }}" href="/about-us">Tentang Kami</a>
-            <a class="btn btn-success" href="https://wa.me/62895391442002">Kontak Kami</a>
+            <a class="nav-link {{ Request::is('about-us') ? 'text-orange' : '' }}" href="/about-us">Tentang Kami</a>
+            <a class="fw-bold btn btn-success mx-3" href="https://wa.me/62895391442002">Kontak Kami</a>
+            <a class="fw-bold btn btn-secondary" href="/affiliate/register">Daftar Affiliate</a>
           </div>
         </div>
       </div>

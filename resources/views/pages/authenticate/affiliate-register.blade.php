@@ -50,6 +50,10 @@
         @enderror
       </div>
       <button type="submit" class="btn btn-primary w-100 mt-3">Masuk</button>
+      <p class="signup-link mt-2">
+        Sudah punya akun?
+        <a href="/affiliate/login" class="text-decoration-none">Login</a>
+    </p>
   </form>
 
 @endsection

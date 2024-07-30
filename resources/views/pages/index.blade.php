@@ -1,6 +1,11 @@
 @extends('template.landing-page')
 
 @section('content')
+    {{-- Headline --}}
+    <section class="container mt-5 text-center">
+      <h2 class="fw-bold">Lebih dari 38 tahun dipercaya sebagai mitra Haji dan Umrah </h2>
+      <p class="fs-5">Kami berkomitmen untuk memberikan pelayanan terbaik kepada para jamaah. Kami bekerja sama dengan maskapai penerbangan terkemuka untuk memastikan kenyamanan perjalanan udara, serta hotel-hotel yang terbaik di Makkah dan Madinah sehingga jamaah dapat merasa tenang dan fokus pada ibadah mereka.</p>
+    </section>
     {{-- Documentation --}}
     <section class="my-5 d-flex justify-content-center border">
       <div id="documentation" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
@@ -28,53 +33,57 @@
       <h2 class="text-center">Keberangkatan Terdekat</h2>
       <div class="departure-wrapper mt-4">
         @if ($haji || $umrah)
-          {{-- Haji --}}
-          <div class="card mb-4 p-2 shadow">
-            <img src='product-img/{{ $haji->poster }}' class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">{{ $haji->title }}</h5>
-              <ul>  
-                <li class="mb-2">
-                  <p class="m-0">Hotel Mekkah</p>
-                  <p class="m-0">{{ $haji->hotelMekkah }}</p>
-                </li>
-                <li>
-                  <p class="m-0">Hotel Madinah</p>
-                  <p class="m-0">{{ $haji->hotelMadinah }}</p>
-                </li>
-              </ul>
-              <p class="card-text">Maskapai : {{ $haji->airline }}</p>
-              {{-- <form action=""> --}}
-                <a href="/daftar" class="btn btn-primary w-100 {{ $haji->status? " " : 'disabled' }}">
-                  Daftar
-                </a>
-              {{-- </form> --}}
+          @if ($haji)
+            {{-- Haji --}}
+            <div class="card mb-4 p-2 shadow">
+              <img src='product-img/{{ $haji->poster }}' class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{ $haji->title }}</h5>
+                <ul>  
+                  <li class="mb-2">
+                    <p class="m-0">Hotel Mekkah</p>
+                    <p class="m-0">{{ $haji->hotelMekkah }}</p>
+                  </li>
+                  <li>
+                    <p class="m-0">Hotel Madinah</p>
+                    <p class="m-0">{{ $haji->hotelMadinah }}</p>
+                  </li>
+                </ul>
+                <p class="card-text">Maskapai : {{ $haji->airline }}</p>
+                {{-- <form action=""> --}}
+                  <a href="/daftar" class="btn btn-primary w-100 {{ $haji->status? " " : 'disabled' }}">
+                    Daftar
+                  </a>
+                {{-- </form> --}}
+              </div>
             </div>
-          </div>
+          @endif
 
-          {{-- Umrah --}}
-          <div class="card mb-4 p-2 shadow">
-            <img src='product-img/{{ $umrah->poster }}' class="card-img-top" alt="..." />
-            <div class="card-body">
-              <h5 class="card-title">{{ $umrah->title }}</h5>
-              <ul>  
-                <li class="mb-2">
-                  <p class="m-0">Hotel Mekkah</p>
-                  <p class="m-0">{{ $umrah->hotelMekkah }}</p>
-                </li>
-                <li>
-                  <p class="m-0">Hotel Madinah</p>
-                  <p class="m-0">{{ $umrah->hotelMadinah }}</p>
-                </li>
-              </ul>
-              <p class="card-text">Maskapai : {{ $umrah->airline }}</p>
-              {{-- <form action=""> --}}
-                <a href="/daftar" class="btn btn-primary w-100 {{ $umrah->status? " " : 'disabled' }}">
-                  Daftar
-                </a>
-              {{-- </form> --}}
+          @if ($umrah)
+            {{-- Umrah --}}
+            <div class="card mb-4 p-2 shadow">
+              <img src='product-img/{{ $umrah->poster }}' class="card-img-top" alt="..." />
+              <div class="card-body">
+                <h5 class="card-title">{{ $umrah->title }}</h5>
+                <ul>  
+                  <li class="mb-2">
+                    <p class="m-0">Hotel Mekkah</p>
+                    <p class="m-0">{{ $umrah->hotelMekkah }}</p>
+                  </li>
+                  <li>
+                    <p class="m-0">Hotel Madinah</p>
+                    <p class="m-0">{{ $umrah->hotelMadinah }}</p>
+                  </li>
+                </ul>
+                <p class="card-text">Maskapai : {{ $umrah->airline }}</p>
+                {{-- <form action=""> --}}
+                  <a href="/daftar" class="btn btn-primary w-100 {{ $umrah->status? " " : 'disabled' }}">
+                    Daftar
+                  </a>
+                {{-- </form> --}}
+              </div>
             </div>
-          </div>
+          @endif
         @else
           <P class="text-secondary text-center">Belum ada jadwal keberangkatan</P>
         @endif
@@ -101,6 +110,13 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
+    </section>
+
+    {{-- Affiliate --}}
+    <section class="mb-5 text-center">
+      <h2>Menjadi Mitra Affiliate</h2>
+      <p>Jadilah mitra affiliate kami dan dapatkan keuntungannya.</p>
+      <a href="/affiliate/register" class="btn btn-secondary shadow px-5 py-2 fw-semibold font-monospace">Daftar Afiiliate</a>
     </section>
 
     <!-- Our Partner -->
