@@ -157,7 +157,7 @@
                             <input type="file" class="form-control @error('banner')
                                 is-invalid
                             @enderror" name="banner">
-                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            <button class="btn btn-primary" type="submit">Ubah</button>
                             @error('banner')
                                 <div class="invalid-feedback">
                                 {{ $message }}
@@ -165,6 +165,91 @@
                             @enderror
                         </div>
                     </form>
+                </div>
+            </div>
+            {{-- Documentation --}}
+            <div class="card shadow mb-4">
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Video Dokumentasi</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form action="/admin/video/documentation" method="POST">
+                        @csrf
+                        <small class="badge badge-warning mb-2">cth: https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1</small>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control @error('documentation')
+                                is-invalid
+                            @enderror" name="documentation">
+                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            @error('documentation')
+                                <div class="invalid-feedback">
+                                {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </form>
+
+                    @if ($documentations->count() > 0)
+                        <ul class="list-group">
+                            <li class="list-group-item bg-secondary-subtle fw-bold" >Daftar Link Video</li>
+                            @foreach ($documentations as $item)
+                                <li class="list-group-item d-flex justify-content-between gap-1">
+                                    <p>{{ $item->link }}</p>
+                                    <form action="/admin/video/{{ $item->id }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger py-1 px-3">Hapus</button>
+                                    </form>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-center">Belum ada video</p>
+                    @endif
+                </div>
+            </div>
+            {{-- Testimonial --}}
+            <div class="card shadow mb-4">
+                <div
+                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                    <h6 class="m-0 font-weight-bold text-primary">Video Testimoni</h6>
+                </div>
+                <!-- Card Body -->
+                <div class="card-body">
+                    <form action="/admin/video/testimonial" method="POST">
+                        @csrf
+                        <small class="badge badge-warning mb-2">cth: https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1</small>
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control @error('testimonial')
+                                is-invalid
+                            @enderror" name="testimonial" required>
+                            <button class="btn btn-primary" type="submit">Tambah</button>
+                            @error('testimonial')
+                                <div class="invalid-feedback">
+                                {{ $message }}
+                                </div>
+                            @enderror
+                        </div>
+                    </form>
+                    @if ($testimonials->count() > 0)
+                        <ul class="list-group">
+                            <li class="list-group-item bg-secondary-subtle fw-bold" >Daftar Link Video</li>
+                            @foreach ($testimonials as $item)
+                                <li class="list-group-item d-flex justify-content-between gap-1">
+                                    <p>{{ $item->link }}</p>
+                                    <form action="/admin/video/{{ $item->id }}" method="post">
+                                        @method('DELETE')
+                                        @csrf
+                                        <button class="btn btn-danger py-1 px-3">Hapus</button>
+                                    </form>
+                                </li>
+                            @endforeach
+                        </ul>
+                    @else
+                        <p class="text-center">Belum ada video</p>
+                    @endif
                 </div>
             </div>
         </div>

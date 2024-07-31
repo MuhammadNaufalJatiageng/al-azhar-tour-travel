@@ -9,14 +9,15 @@
     {{-- Documentation --}}
     <section class="my-5 d-flex justify-content-center border">
       <div id="documentation" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
-        <h2 class="text-center mb-3">Testimoni Haji dan Umrah</h2>
+        <h2 class="text-center mb-3">Dokumentasi Haji dan Umrah</h2>
         <div class="carousel-inner ">
-          <div class="carousel-item active text-center">
-            <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>
-          </div>
-          <div class="carousel-item text-center">
-            <iframe src="https://www.youtube.com/embed/LJ_roqc9NoI?autoplay=1&mute=1" class="rounded video"></iframe>
-          </div>
+          @foreach ($documentations as $key => $item)
+            <div class="carousel-item text-center @if ($key == 0)
+                active
+            @endif">
+              <iframe src="{{ $item->link }}" class="rounded video"></iframe>
+            </div>
+          @endforeach
         <button class="carousel-control-prev" type="button" data-bs-target="#documentation" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -95,12 +96,13 @@
       <div id="testimoni" class="carousel slide bg-light shadow py-3 rounded" style="width: 85%">
         <h2 class="text-center mb-3">Testimoni Haji dan Umrah</h2>
         <div class="carousel-inner ">
-          <div class="carousel-item active text-center">
-            <iframe src="https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1" class="rounded video"></iframe>
-          </div>
-          <div class="carousel-item text-center">
-            <iframe src="https://www.youtube.com/embed/LJ_roqc9NoI?autoplay=1&mute=1" class="rounded video"></iframe>
-          </div>
+          @foreach ($testimonials as $key => $item)
+            <div class="carousel-item text-center @if ($key == 0)
+                active
+            @endif">
+              <iframe src="{{ $item->link }}" class="rounded video"></iframe>
+            </div>
+          @endforeach
         <button class="carousel-control-prev" type="button" data-bs-target="#testimoni" data-bs-slide="prev">
           <span class="carousel-control-prev-icon" style="filter: invert(100%)" aria-hidden="true"></span>
           <span class="visually-hidden">Previous</span>
@@ -110,13 +112,6 @@
           <span class="visually-hidden">Next</span>
         </button>
       </div>
-    </section>
-
-    {{-- Affiliate --}}
-    <section class="mb-5 text-center">
-      <h2>Menjadi Mitra Affiliate</h2>
-      <p>Jadilah mitra affiliate kami dan dapatkan keuntungannya.</p>
-      <a href="/affiliate/register" class="btn btn-secondary shadow px-5 py-2 fw-semibold font-monospace">Daftar Afiiliate</a>
     </section>
 
     <!-- Our Partner -->

@@ -9,6 +9,7 @@ use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Registrant;
 use App\Models\User;
+use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -22,7 +23,9 @@ class AdminController extends Controller
             'airlines' => Airline::all(),
             'partners' =>Partner::where('banner', 0)->get(),
             'banner' => Partner::where('banner', 1)->first(),
-            'products' => Product::all()
+            'products' => Product::all(),
+            "documentations" => Video::where('section', "documentation")->get(),
+            "testimonials" => Video::where('section', "testimonial")->get(),
         ]);
     }
 // sCHEDULE

@@ -10,6 +10,7 @@ use App\Models\category;
 use App\Models\Partner;
 use App\Models\User;
 use App\Models\UserProfile;
+use App\Models\Video;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -51,6 +52,15 @@ class DatabaseSeeder extends Seeder
         Partner::create([
             'image' => 'garuda-indonesia.png',
             'banner' => false
+        ]);
+
+        Video::create([
+            'link' => "https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1",
+            'section' => "documentation"
+        ]);
+        Video::create([
+            'link' => "https://www.youtube.com/embed/SsGDipYteiQ?autoplay=1&mute=1",
+            'section' => "testimonial"
         ]);
     }
 }

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Airline;
 use App\Models\Partner;
+use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
 
@@ -30,7 +31,8 @@ class PartnerController extends Controller
 
         return back()->with("success", "Berhasil menghapus maskapai.");
     }
-    
+
+// Partner
     public function partnerStore(Request $request)
     {
         $validated = $request->validate([
@@ -60,6 +62,7 @@ class PartnerController extends Controller
         return back()->with("success", "Berhasil menghapus mitra.");
     }
 
+// Banner
     public function bannerStore(Request $request)
     {
         $banner = Partner::where('banner', 1)->first();
@@ -82,5 +85,43 @@ class PartnerController extends Controller
         }
 
         return back()->with('success', "Berhasil mengubah banner.");
+    }
+
+// VIDEO
+    public function documentationStore(Request $request) 
+    {
+        $validated = $request->validate([
+            "documentation" => "required"
+        ]);
+
+        $validated['link'] = $request->documentation;
+        $validated['section'] = 'documentation';
+
+        Video::create($validated);
+
+        return back()->with('success', "Berhasil menambahkan video dokumentasi.");
+    }
+
+    public function testimonialStore(Request $request) 
+    {
+        $validated = $request->validate([
+            "testimonial" => "required"
+        ]);
+
+        $validated['link'] = $request->testimonial;
+        $validated['section'] = 'testimonial';
+
+        Video::create($validated);
+
+        return back()->with('success', "Berhasil menambahkan video testimoni.");
+    }
+
+    public function videoDestroy($id)
+    {
+        $video = Video::find($id);
+
+        $video->delete();
+
+        return back()->with("success", "Berhasil menghapus link video.");
     }
 }

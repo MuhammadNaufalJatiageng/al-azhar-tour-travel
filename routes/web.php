@@ -11,6 +11,7 @@ use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\RegistrantController;
 use App\Models\Partner;
 use App\Models\Product;
+use App\Models\Video;
 use Carbon\Carbon;
 
 /*
@@ -46,7 +47,9 @@ Route::get('/', function () {
         "haji" => getProduct(2),
         "umrah" => getProduct(1),
         "partners" => Partner::where('banner', 0)->get(),
-        "banner" => Partner::where('banner', 1)->first()
+        "banner" => Partner::where('banner', 1)->first(),
+        "documentations" => Video::where('section', "documentation")->get(),
+        "testimonials" => Video::where('section', "testimonial")->get(),
     ]);
     
 })->name('home');
@@ -79,6 +82,10 @@ Route::middleware('auth')->group(function () {
     Route::delete('/admin/airline/{id}', [PartnerController::class, 'airlineDestroy']);
     // Admin Banner
     Route::put('/admin/banner', [PartnerController::class, 'bannerStore']);
+    // Admin Video
+    Route::post('/admin/video/documentation', [PartnerController::class, 'documentationStore']);
+    Route::post('/admin/video/testimonial', [PartnerController::class, 'testimonialStore']);
+    Route::delete('/admin/video/{id}', [PartnerController::class, 'videoDestroy']);
     // Admin Mitra
     Route::post('/admin/partner', [PartnerController::class, 'partnerStore']);
     Route::delete('/admin/partner/{id}', [PartnerController::class, 'partnerDestroy']);
