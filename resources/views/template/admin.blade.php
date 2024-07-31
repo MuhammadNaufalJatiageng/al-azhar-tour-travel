@@ -48,6 +48,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item {{ Request::is('admin/dashboard') ? 'active' : '' }}">
                 <a class="nav-link" href="/admin/dashboard">
+                    <i class="fa-solid fa-gauge"></i>
                     <span>Dashboard</span>
                 </a>
             </li>

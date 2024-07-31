@@ -21,7 +21,7 @@ class AdminController extends Controller
         return view('pages.admin.dashboard', [
             'categories' => Category::all(),
             'airlines' => Airline::all(),
-            'partners' =>Partner::where('banner', 0)->get(),
+            'partners' =>Partner::where('banner', 0)->paginate(5),
             'banner' => Partner::where('banner', 1)->first(),
             'products' => Product::all(),
             "documentations" => Video::where('section', "documentation")->get(),
@@ -142,7 +142,7 @@ class AdminController extends Controller
     public function registrantIndex()
     {
         return view('pages.admin.registrant.index', [
-            'registrants' => Registrant::all()
+            'registrants' => Registrant::paginate(20)
         ]);
     }
 
@@ -170,7 +170,7 @@ class AdminController extends Controller
     public function affiliateIndex()
     {
         return view('pages.admin.affiliate.index', [
-            'affiliates' => User::where('role', 'affiliate')->get()
+            'affiliates' => User::where('role', 'affiliate')->paginate(20)
         ]);
     }
 // END AFFILIATE

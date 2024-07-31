@@ -50,7 +50,7 @@
     <select class="form-select @error('packet')
         is-invalid
     @enderror" id="packet" name="packet" required>
-      <option selected disabled>---</option>
+      <option selected hidden>Pilih Paket...</option>
       @foreach ($products as $product)
         {{-- <option class="fw-bold" disabled>{{ $product->catego }}</option> --}}
         <option value="{{ $product->title }}">{{ $product->title }}</option>

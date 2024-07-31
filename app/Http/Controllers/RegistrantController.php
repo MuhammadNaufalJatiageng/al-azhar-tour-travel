@@ -100,6 +100,6 @@ class RegistrantController extends Controller
         };
 
 
-        return back()->with('success', 'Data sudah terkirim, terimaksih atas kepercayaan anda.');
+        return back()->with('success', 'Data sudah terkirim, terimakasih atas kepercayaan anda.');
     }
 }

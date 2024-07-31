@@ -53,7 +53,7 @@
                     @endif
                 </div>
             </div>
-            {{-- Mitra --}}
+            {{-- Partner --}}
             <div class="card shadow mb-4">
                 <div
                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -77,7 +77,7 @@
                         </div>
                     </form>
                     @if ($partners->count() > 0)
-                        <ul class="list-group">
+                        <ul class="list-group mb-2">
                             <li class="list-group-item bg-secondary-subtle fw-bold" >Daftar Mitra</li>
                             @foreach ($partners as $partner)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
@@ -91,8 +91,9 @@
                             @endforeach
                         </ul>
                     @else
-                        <p class="text-center">Belum ada Mitra</p>
+                        <p class="text-center mb-2">Belum ada Mitra</p>
                     @endif
+                    {{ $partners->links() }}
                 </div>
             </div>
         </div>

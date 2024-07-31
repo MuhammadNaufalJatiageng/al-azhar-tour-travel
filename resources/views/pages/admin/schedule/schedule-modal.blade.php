@@ -12,7 +12,7 @@
                 <div class="input-group mb-3">
                   <label class="input-group-text" for="inputGroupSelect01">Kategori</label>
                   <select class="form-select" id="category_id" name="category_id">
-                    <option selected disabled>Kategori...</option>
+                    <option selected hidden>Kategori...</option>
                     @foreach ($categories as $category)
                       <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
@@ -52,7 +52,7 @@
                 <div class="input-group mb-3">
                     <label class="input-group-text" for="inputGroupSelect01">Maskapai</label>
                     <select class="form-select" id="inputGroupSelect01" name="airline">
-                      <option selected disabled>Pilih maskapai...</option>
+                      <option selected hidden>Pilih maskapai...</option>
                       @foreach ($airlines as $airline)
                         <option value="{{ $airline->name }}">{{ $airline->name }}</option>
                       @endforeach

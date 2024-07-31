@@ -48,6 +48,7 @@
                         
                     </tbody>
                 </table>
+                {{ $registrants->links() }}
             </div>
         </div>
     </div>
@@ -63,7 +64,6 @@
 
         scheduleSubmit.addEventListener('click', () => {
             scheduleForm.submit()
-            console.log(true);
         })
     </script>
     
