@@ -35,27 +35,6 @@ class RegistrantController extends Controller
             'email' => $request->email,
             'affiliate_code' => $request->affiliate_code,
         ]);
-        // return redirect('/daftar/submit')->with('numOfRegistrans', $request->numOfRegistrans);
-
-        // $validated['fullname'] = $request->fullname;
-
-        // if ($request->affiliate_code) 
-        // {
-        //     $affiliate = AffiliateProfile::where('affiliate_code', $request->affiliate_code)->first();
-
-        //     if ($affiliate) 
-        //     {
-        //         $validated['affiliate_code'] = $request->affiliate_code;
-        //     } 
-        //     else
-        //     {
-        //         return back()->with("fail", "Kode affiliate tidak ditemukan");
-        //     }
-        // }
-        
-        // Registrant::create($validated);
-
-        // return back()->with('success', "Terimakasih sudah mendaftar");
     }
 
     public function secondForm()
@@ -85,7 +64,7 @@ class RegistrantController extends Controller
             }
         }
 
-        // Registran Detail
+        // Registrant Detail
 
         Registrant::create($registrant);
 

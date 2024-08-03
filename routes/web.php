@@ -6,14 +6,15 @@ use App\Http\Controllers\AffiliateProfileController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingPage;
-use App\Http\Controllers\PacketController;
 use App\Http\Controllers\PartnerController;
 use App\Http\Controllers\RegistrantController;
+use App\Models\Banner;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Video;
 use Carbon\Carbon;
-
+use Illuminate\Support\Facades\Artisan;
+use Illuminate\Support\Facades\Response;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -24,6 +25,31 @@ use Carbon\Carbon;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+Route::get("/migrate", function(){
+    // Run migrations and seed database
+        Artisan::call('migrate:fresh --seed');
+
+        // Return a response
+        return response()->json(['message' => 'Database migrated and seeded successfully']);
+});
+
+Route::get("/storage", function(){
+    // Define the paths for the symbolic link
+            $target = public_path('storage');
+            $link = storage_path('../public_html/storage');
+    
+            // Check if the symbolic link already exists
+            if (!file_exists($target)) {
+                // Create the symbolic link
+                symlink($link, $target);
+                $message = 'Symbolic link created successfully!';
+            } else {
+                $message = 'Symbolic link already exists.';
+            }
+    
+            // Return a response
+            return Response::json(['message' => $message]);
+    });
 
 Route::get('/', function () {
     $products = Product::all();
@@ -47,7 +73,8 @@ Route::get('/', function () {
         "haji" => getProduct(2),
         "umrah" => getProduct(1),
         "partners" => Partner::where('banner', 0)->get(),
-        "banner" => Partner::where('banner', 1)->first(),
+        "desktop" => Banner::where('version', 'desktop')->first(),
+        "mobile" => Banner::where('version', 'mobile')->first(),
         "documentations" => Video::where('section', "documentation")->get(),
         "testimonials" => Video::where('section', "testimonial")->get(),
     ]);
@@ -81,7 +108,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/airline', [PartnerController::class, 'airlineStore']);
     Route::delete('/admin/airline/{id}', [PartnerController::class, 'airlineDestroy']);
     // Admin Banner
-    Route::put('/admin/banner', [PartnerController::class, 'bannerStore']);
+    Route::post('/admin/banner', [PartnerController::class, 'bannerStore']);
     // Admin Video
     Route::post('/admin/video/documentation', [PartnerController::class, 'documentationStore']);
     Route::post('/admin/video/testimonial', [PartnerController::class, 'testimonialStore']);
@@ -101,6 +128,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/admin/pendaftar/search', [AdminController::class, 'registrantSearch']);
     //  Admin Affiliate
     Route::get('/admin/affiliate', [AdminController::class, 'affiliateIndex']);
+    Route::post('/admin/affiliate/search', [AdminController::class, 'affiliateSearch']);
     // Affiliate
     Route::get('/affiliate/dashboard', [AffiliateProfileController::class, 'index']);
     Route::post('/login/affiliate',[ AuthenticationController::class, 'login']);

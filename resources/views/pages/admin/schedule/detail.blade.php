@@ -12,9 +12,10 @@
             <div class="input-group mb-3">
               <label class="input-group-text" for="category_id">Kategori</label>
               <select class="form-select" id="category_id" name="category_id">
-                <option selected>{{ $product->category->name }}</option>
                 @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    <option @if ($category->name == $product->category->name)
+                        selected
+                    @endif value="{{ $category->id }}">{{ $category->name }}</option>
                 @endforeach
               </select>
             </div>
@@ -45,7 +46,7 @@
 
             <div class="input-group mb-3">
                 <label class="input-group-text" for="poster">Poster</label>
-                <input type="file" class="form-control" id="poster" name="poster" id="poster">
+                <input type="file" class="form-control" id="poster" name="poster">
             </div>
 
             <input type="hidden" name="oldPoster" value="{{ $product->poster }}">

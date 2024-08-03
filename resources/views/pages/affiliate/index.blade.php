@@ -68,7 +68,7 @@
         </div>
         <div class="bg-light shadow rounded-3 mb-3 p-2">
           <h4>Link Affiliate</h4>
-          <p>http://al-azhar-tour-travel.test/daftar/{{ auth()->user()->affiliateProfile->affiliate_code}}</p>
+          <p>{{ url('/daftar/'.auth()->user()->affiliateProfile->affiliate_code) }}</p>
         </div>
       </div>
       

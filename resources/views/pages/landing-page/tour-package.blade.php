@@ -7,7 +7,7 @@
       @if ($products->count() > 0)
         @foreach ($products as $product)
             <div class="card mb-4 p-2 shadow">
-                <img src='product-img/{{ $product->poster }}' class="card-img-top" alt="..." />
+                <img src='{{ asset('storage/'. $product->poster) }}' class="card-img-top" alt="..." />
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->title }}</h5>
                     <ul>  

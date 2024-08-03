@@ -52,9 +52,7 @@
     @enderror" id="packet" name="packet" required>
       <option selected hidden>Pilih Paket...</option>
       @foreach ($products as $product)
-        {{-- <option class="fw-bold" disabled>{{ $product->catego }}</option> --}}
         <option value="{{ $product->title }}">{{ $product->title }}</option>
-          
       @endforeach
     </select>
     @error('packet')
@@ -81,7 +79,49 @@
     @enderror
   </div>
 
-  <button class="btn btn-primary d-block mx-auto mt-3">Ke Halaman Selanjutnya</button>
-</form>
+  <div class="d-flex align-items-center gap-2">
+    <input type="checkbox" name="aggrement" id="myCheckbox">
+    <label for="myCheckbox">
+      <small >Saya setuju dengan <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">syarat dan ketentuan</a></small>
+    </label>
+  </div>
+
+  <button class="btn btn-primary d-block mx-auto mt-3" id="myButton" disabled>Ke Halaman Selanjutnya</button>
+</form> 
+
+<!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">Syarat dan Ketentuan</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <ol>
+          <li>Mengisi formulir pendaftaran dengan data lengkap sesuai KTP/Paspor.</li>
+          <li>
+            Menyerahkan persyaratan sebagai berikut :
+            <div>
+              <ol type="a">
+                <li>Paspor RI</li>
+                <li>Copy KTP yang masih berlaku</li>
+                <li>Copy Kartu Keluarga</li>
+              </ol>
+            </div>
+          </li>
+          <li>Membayar uang muka sebesar USD 1000</li>
+        </ol>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection 
+
+@section('script')
+    <script src="{{ asset('js/checkbox.js') }}"></script>
+@endsection

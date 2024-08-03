@@ -49,12 +49,53 @@
           </div>
         @enderror
       </div>
-      <button type="submit" class="btn btn-primary w-100 mt-3">Masuk</button>
+
+      <div class="d-flex align-items-center gap-2">
+        <input type="checkbox" name="aggrement" id="myCheckbox">
+        <label for="myCheckbox">
+          <small >Saya setuju dengan <a href="#" class="text-decoration-none" data-bs-toggle="modal" data-bs-target="#staticBackdrop">syarat dan ketentuan</a></small>
+        </label>
+      </div>
+      
+      <button type="submit" class="btn btn-primary w-100 mt-3" id="myButton" disabled>Daftar</button>
       <p class="signup-link mt-2">
         Sudah punya akun?
         <a href="/affiliate/login" class="text-decoration-none">Login</a>
     </p>
   </form>
 
+  <!-- Modal -->
+  <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Syarat dan Ketentuan</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <ol>
+            <li>Mengisi formulir pendaftaran dengan data lengkap sesuai KTP/Paspor.</li>
+            <li>
+              Menyerahkan persyaratan sebagai berikut :
+              <div>
+                <ol type="a">
+                  <li>Paspor RI</li>
+                  <li>Copy KTP yang masih berlaku</li>
+                  <li>Copy Kartu Keluarga</li>
+                </ol>
+              </div>
+            </li>
+          </ol>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
+        </div>
+      </div>
+    </div>
+  </div>
+@endsection
+
+@section('script')
+<script src="{{ asset('js/checkbox.js') }}"></script>
 @endsection
 

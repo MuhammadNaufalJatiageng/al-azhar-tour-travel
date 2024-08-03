@@ -28,6 +28,7 @@
           aria-controls="navbarNavAltMarkup"
           aria-expanded="false"
           aria-label="Toggle navigation"
+          id="nav-btn"
         >
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -49,7 +50,7 @@
     <!-- FLoating Button -->
     <section class="floating-btn">
       <a href="https://wa.me/62895391442002" class="pe-3">
-        <img src="{{ asset('img/whatsapp.png') }}" alt="" />
+        <img src="{{ asset('img/whatsapp.png') }}" alt="" id="banner"/>
         <small class="p-2 fw-bold">Chat kami untuk informasi Haji/Umrah</small>
       </a>
     </section>
@@ -57,7 +58,6 @@
     <!-- Banner -->
     <section class="banner">
       <div class="banner-wrapper">
-        <img src="{{ asset('partner-img/'.$banner->image) }}" alt=""/>
         <div class="overlay"></div>
       </div>
     </section>
@@ -68,7 +68,7 @@
       <div class="footer-header">
         <img src="{{ asset('/img/logo.png') }}" alt="" />
         <h3>Al Azhar Tour & Travel</h3>
-        <p class="text-center mt-4">
+        <p class="text-center mt-4 test">
           Jl. Sisingamangaraja No.2, RT.2/RW.1, Selong, Kec. Kby. Baru, Kota
           Jakarta Selatan, Daerah Khusus Ibukota Jakarta 12110
         </p>
@@ -111,5 +111,24 @@
     <!-- Navbar Backgroud -->
     <script src="{{ asset('js/navbar.js') }}"></script>
     @yield('script')
+
+    <script>
+      let banner = document.querySelector('.banner-wrapper');
+
+      const mediaQuery = window.matchMedia('(max-width: 700px)');
+
+      function handleMediaQueryChange(e) {
+        if (e.matches) {
+          banner.innerHTML = `<img src="{{ asset('storage/'.$mobile->image) }}" alt=""/>` 
+        } else {
+          banner.innerHTML = `<img src="{{ asset('storage/'.$desktop->image) }}" alt=""/>` 
+        }
+      }
+
+      handleMediaQueryChange(mediaQuery);
+
+      mediaQuery.addEventListener('change', handleMediaQueryChange);
+
+    </script>
   </body>
 </html>

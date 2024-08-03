@@ -9,7 +9,11 @@
    <!-- DataTales -->
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Daftar Affiliate</h6>
+            <form class="d-flex col-md-6" action="/admin/affiliate/search" method="POST">
+                @csrf
+                <input class="form-control me-2" type="search" placeholder="Cari berdasarkan kode affiliate..." aria-label="Search" name="keyword">
+                <button class="btn btn-outline-primary" type="submit">Search</button>
+            </form>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -18,6 +22,7 @@
                         <tr>
                             <th>Nama</th>
                             <th>Email</th>
+                            <th>No. Handphone</th>
                             <th>Kode Affiliate</th>
                         </tr>
                     </thead>
@@ -27,20 +32,13 @@
                                 <tr>
                                     <td>{{ $affiliate->name }}</td>
                                     <td>{{ $affiliate->email }}</td>
+                                    <td>{{ $affiliate->affiliateProfile->phone_number }}</td>
                                     <td>{{ $affiliate->affiliateProfile->affiliate_code }}</td>
-                                    {{-- <td class="d-flex justify-content-center gap-2">
-                                        <a href="/admin/schedule/detail" class="btn btn-info">Detail</a>
-                                        <form action="/admin/schedule/delete" method="post">
-                                            @csrf
-                                            <button type="submit" class="btn btn-danger">Hapus</button>
-                                        </form>
-                                    </td> --}}
                                 </tr>
                             @endforeach
                         @endif
                     </tbody>
                 </table>
-                {{ $affiliates->links() }}
             </div>
         </div>
     </div>

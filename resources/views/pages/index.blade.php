@@ -37,7 +37,7 @@
           @if ($haji)
             {{-- Haji --}}
             <div class="card mb-4 p-2 shadow">
-              <img src='product-img/{{ $haji->poster }}' class="card-img-top" alt="..." />
+              <img src='{{ asset('storage/'. $haji->poster) }}' class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title">{{ $haji->title }}</h5>
                 <ul>  
@@ -51,11 +51,9 @@
                   </li>
                 </ul>
                 <p class="card-text">Maskapai : {{ $haji->airline }}</p>
-                {{-- <form action=""> --}}
                   <a href="/daftar" class="btn btn-primary w-100 {{ $haji->status? " " : 'disabled' }}">
                     Daftar
                   </a>
-                {{-- </form> --}}
               </div>
             </div>
           @endif
@@ -63,7 +61,7 @@
           @if ($umrah)
             {{-- Umrah --}}
             <div class="card mb-4 p-2 shadow">
-              <img src='product-img/{{ $umrah->poster }}' class="card-img-top" alt="..." />
+              <img src='{{ asset('storage/'. $umrah->poster) }}' class="card-img-top" alt="..." />
               <div class="card-body">
                 <h5 class="card-title">{{ $umrah->title }}</h5>
                 <ul>  
@@ -77,11 +75,9 @@
                   </li>
                 </ul>
                 <p class="card-text">Maskapai : {{ $umrah->airline }}</p>
-                {{-- <form action=""> --}}
                   <a href="/daftar" class="btn btn-primary w-100 {{ $umrah->status? " " : 'disabled' }}">
                     Daftar
                   </a>
-                {{-- </form> --}}
               </div>
             </div>
           @endif
@@ -114,15 +110,25 @@
       </div>
     </section>
 
+    <section class="shadow my-5 mx-auto" style="width: 85%">
+      <script src="https://static.elfsight.com/platform/platform.js" data-use-service-core defer></script>
+      <div class="elfsight-app-34946b90-746c-4530-a608-fd914e9b540d" data-elfsight-app-lazy></div>
+    </section>
+
+
     <!-- Our Partner -->
     @if ($partners->count() > 0)
       <section class="container partner">
         <h2 class="text-center">Mitra Kami</h2>
         <div class="partner-wrapper mt-4">
           @foreach ($partners as $partner)
-            <img src="{{ asset('partner-img/'.$partner->image) }}" alt="" />
+            <img src="{{ asset('storage/'.$partner->image) }}" alt="" />
           @endforeach
         </div>
       </section>
     @endif
+@endsection
+
+
+@section('script')
 @endsection

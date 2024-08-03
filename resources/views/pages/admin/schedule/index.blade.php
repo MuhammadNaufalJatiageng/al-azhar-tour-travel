@@ -48,7 +48,7 @@
                                     <td>{{ $product->hotelMekkah }}</td>
                                     <td>{{ $product->hotelMadinah }}</td>
                                     <td>
-                                        <a href="/product-img/{{ $product->poster }}" download>{{ $product->poster }}</a>
+                                        <a href="{{ asset('storage/'. $product->poster) }}" download>{{ $product->poster }}</a>
                                     </td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail/{{ $product->id }}" class="btn btn-info">Detail</a>
@@ -64,6 +64,7 @@
                         
                     </tbody>
                 </table>
+                <img src="{{ asset('storage/product-img/mIqtMfYaWSRYhMCKKuIWrg3kanPyguT43osXU8KA.jpg') }}" alt="">
             </div>
         </div>
     </div>

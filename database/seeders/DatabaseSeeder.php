@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\AffiliateProfile;
 use App\Models\Airline;
+use App\Models\Banner;
 use App\Models\category;
 use App\Models\Partner;
 use App\Models\User;
@@ -45,12 +46,16 @@ class DatabaseSeeder extends Seeder
             'name' => "Saudi Airlines"
         ]);
 
-        Partner::create([
-            'image' => 'new-banner.jpg',
-            'banner' => true
+        Banner::create([
+            'image' => 'partner/desktop.jpg',
+            'version' => 'desktop'
+        ]);
+        Banner::create([
+            'image' => 'partner/mobile.jpg',
+            'version' => 'mobile'
         ]);
         Partner::create([
-            'image' => 'garuda-indonesia.png',
+            'image' => 'partner/garuda-indonesia.png',
             'banner' => false
         ]);
 

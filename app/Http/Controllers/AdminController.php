@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\AffiliateProfile;
 use App\Models\Airline;
 use App\Models\category;
-use App\Models\Packet;
 use App\Models\Partner;
 use App\Models\Product;
 use App\Models\Registrant;
@@ -12,7 +12,7 @@ use App\Models\User;
 use App\Models\Video;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class AdminController extends Controller
 {
@@ -65,11 +65,7 @@ class AdminController extends Controller
             $validated['status'] = true;
         }
         
-        $destinationPath = 'product-img';
-        $myimage = time() . $request->file('poster')->getClientOriginalName();
-        $request->file('poster')->move(public_path($destinationPath), $myimage);
-        
-        $validated['poster'] = $myimage;
+        $validated['poster'] = $request->file('poster')->store('schedule', 'public');
 
         $validated['hotelMekkah'] = $request->hotelMekkah;
         $validated['hotelMadinah'] = $request->hotelMadinah;
@@ -106,17 +102,11 @@ class AdminController extends Controller
         if ($request->hasFile('poster')) 
         {
             // Delete old poster
-            $path = public_path("product-img/" . $product->poster);
-            FIle::delete($path);
+            Storage::delete('public/'.$product->poster);
 
             // Store new poster
-            $destinationPath = 'product-img';
-            $myimage = time() . $request->file('poster')->getClientOriginalName();
-            $request->file('poster')->move(public_path($destinationPath), $myimage);
-
-            $validated['poster'] = $myimage;
+            $validated['poster'] = $request->file('poster')->store('schedule', 'public');
         }
-
         
         $product->update($validated);
 
@@ -128,8 +118,7 @@ class AdminController extends Controller
         $product = Product::find($id);
 
         // Delete poster
-        $path = public_path("product-img/" . $product->poster);
-        FIle::delete($path);
+        Storage::delete('public/'.$product->poster);
 
         $product->delete();
         
@@ -148,7 +137,7 @@ class AdminController extends Controller
 
     public function registrantSearch(Request $request)
     {
-        $results = Registrant::where('name', $request->keyword)->get();
+        $results = Registrant::where('name', 'like',"%".$request->keyword."%")->paginate(20);
 
         return view('pages.admin.registrant.index', [
             'registrants' => $results
@@ -170,7 +159,24 @@ class AdminController extends Controller
     public function affiliateIndex()
     {
         return view('pages.admin.affiliate.index', [
-            'affiliates' => User::where('role', 'affiliate')->paginate(20)
+            'affiliates' => User::where('role', 'affiliate')->get()
+        ]);
+    }
+
+    public function affiliateSearch(Request $request)
+    {
+        $users = User::where('role', 'affiliate')->get();
+
+        $result = [];
+        
+        foreach ($users as $key => $user) {
+            if ($user->affiliateProfile->affiliate_code == $request->keyword) {
+                array_push($result, $user);
+            }
+        }
+
+        return view('pages.admin.affiliate.index', [
+            'affiliates' => collect($result)
         ]);
     }
 // END AFFILIATE

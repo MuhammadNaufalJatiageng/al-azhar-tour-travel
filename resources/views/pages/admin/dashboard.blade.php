@@ -81,7 +81,7 @@
                             <li class="list-group-item bg-secondary-subtle fw-bold" >Daftar Mitra</li>
                             @foreach ($partners as $partner)
                                 <li class="list-group-item d-flex justify-content-between align-items-center">
-                                    <img src="{{ asset('partner-img/'.$partner->image) }}" class="partner-img">
+                                    <img src="{{ asset('storage/'.$partner->image) }}" class="partner-img">
                                     <form action="/admin/partner/{{ $partner->id }}" method="post" class="col-sm-6 text-end">
                                         @method('DELETE')
                                         @csrf
@@ -147,23 +147,18 @@
                 </div>
                 <!-- Card Body -->
                 <div class="card-body">
-                    <form action="/admin/banner" method="POST" enctype="multipart/form-data">
-                        @method('PUT')
+                    <form action="/admin/banner" method="POST" enctype="multipart/form-data" class="w-full">
                         @csrf
-                        <small class="badge badge-warning mb-2">Disarankan menggunakan aspect ratio 16 : 9</small>
-                        @if ($banner)
-                            <input type="hidden" name="oldBanner" value="{{ $banner->image }}">
-                        @endif
-                        <div class="input-group mb-3">
-                            <input type="file" class="form-control @error('banner')
-                                is-invalid
-                            @enderror" name="banner">
-                            <button class="btn btn-primary" type="submit">Ubah</button>
-                            @error('banner')
-                                <div class="invalid-feedback">
-                                {{ $message }}
-                                </div>
-                            @enderror
+                        <div class="mb-3">
+                            <label for="desktop" class="form-label">Desktop version</label>
+                            <input type="file" class="form-control" id="desktop" required name="desktop">
+                        </div>
+                        <div class="mb-3">
+                            <label for="mobile" class="form-label">Mobile version</label>
+                            <input type="file" class="form-control" id="mobile" required name="mobile">
+                        </div>
+                        <div class="w-100 text-center">
+                            <button class="btn btn-primary w-50">Ubah</button>
                         </div>
                     </form>
                 </div>

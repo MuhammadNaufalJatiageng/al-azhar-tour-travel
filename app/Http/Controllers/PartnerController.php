@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Airline;
+use App\Models\Banner;
 use App\Models\Partner;
 use App\Models\Video;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 
 class PartnerController extends Controller
 {
@@ -39,10 +41,7 @@ class PartnerController extends Controller
             'image' => "required|image|mimes:jpeg,jpg,png|max:100"
         ]);
 
-        $myimage = time() . $request->file('image')->getClientOriginalName();
-        $request->file('image')->move(public_path("partner-img"), $myimage);
-
-        $validated['image'] = $myimage;
+        $validated['image'] = $request->file('image')->store('partner', 'public');
         $validated['banner'] = false;
 
         Partner::create($validated);
@@ -54,8 +53,7 @@ class PartnerController extends Controller
     {
         $partner = Partner::find($id);
 
-        $path = public_path("partner-img/" . $partner->image);
-        File::delete($path);
+        Storage::delete('public/'.$partner->image);
 
         $partner->delete();
 
@@ -65,24 +63,28 @@ class PartnerController extends Controller
 // Banner
     public function bannerStore(Request $request)
     {
-        $banner = Partner::where('banner', 1)->first();
-
         $validated = $request->validate([
-            'banner' => "required|image|mimes:jpeg,jpg,png"
+            'desktop' => "required|image|mimes:jpeg,jpg,png",
+            'mobile' => "required|image|mimes:jpeg,jpg,png"
         ]);
 
-        $mybanner = time() . $request->file('banner')->getClientOriginalName();
-        $request->file('banner')->move(public_path("partner-img"), $mybanner);
+        $oldBanner = Banner::all();
 
-        $validated['image'] = $mybanner;
-        $validated['banner'] = true;
-
-        $banner->update($validated);
-
-        if ($request->oldBanner) {
-            $path = public_path("partner-img/" . $request->oldBanner);
-            File::delete($path);
+        foreach ($oldBanner as $value) {
+            Storage::delete('public/'.$value->image);
         }
+
+        Banner::truncate();
+        
+        $validated['image'] = $request->file('desktop')->store('partner', 'public');
+        $validated['version'] = "desktop";
+
+        Banner::create($validated);
+
+        $validated['image'] = $request->file('mobile')->store('partner', 'public');
+        $validated['version'] = "mobile";
+
+        Banner::create($validated);
 
         return back()->with('success', "Berhasil mengubah banner.");
     }
