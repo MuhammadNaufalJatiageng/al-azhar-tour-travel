@@ -3,7 +3,7 @@
     <div class="modal-dialog modal-dialog-centered modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
+          <h1 class="modal-title fs-5" id="staticBackdropLabel">Tambah Jadwal</h1>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
@@ -24,9 +24,20 @@
                     <input type="text" class="form-control" name="title">
                 </div>
         
-                <div class="input-group mb-3">
-                    <span class="input-group-text" id="basic-addon1">Harga</span>
-                    <input type="text" class="form-control" name="price" placeholder="format ( XX Juta )"> 
+                <div class="bg-light mb-3 p-3 border rounded rounded-3 shadow">
+                  <p class="text-center fw-semibold">Harga</p>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Double</span>
+                      <input type="text" class="form-control" name="double"> 
+                  </div>
+                  <div class="input-group mb-3">
+                      <span class="input-group-text" id="basic-addon1">Triple</span>
+                      <input type="text" class="form-control" name="triple"> 
+                  </div>
+                  <div class="input-group">
+                      <span class="input-group-text" id="basic-addon1">Quad</span>
+                      <input type="text" class="form-control" name="quad"> 
+                  </div>
                 </div>
         
                 <div class="input-group mb-3">

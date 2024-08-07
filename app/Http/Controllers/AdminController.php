@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AffiliateProfile;
+use App\Models\Aggrement;
 use App\Models\Airline;
 use App\Models\category;
 use App\Models\Partner;
@@ -26,6 +27,8 @@ class AdminController extends Controller
             'products' => Product::all(),
             "documentations" => Video::where('section', "documentation")->get(),
             "testimonials" => Video::where('section', "testimonial")->get(),
+            "aggHajj" => Aggrement::where('for', "haji dan umrah")->first(),
+            "aggAff" => Aggrement::where('for', "affiliate")->first(),
         ]);
     }
 // sCHEDULE
@@ -46,7 +49,9 @@ class AdminController extends Controller
         $validated =  $request->validate([
             'category_id' => 'required', 
             'title' => 'required', 
-            'price' => 'required', 
+            'double' => 'required', 
+            'triple' => 'required', 
+            'quad' => 'required', 
             'departureDate' => 'required', 
             'hotelMekkah' => 'required', 
             'hotelMadinah' => 'required', 
@@ -56,7 +61,9 @@ class AdminController extends Controller
 
         $validated['category_id'] = $request->category_id;
         $validated['title'] = $request->title;
-        $validated['price'] = $request->price;
+        $validated['double'] = $request->double;
+        $validated['triple'] = $request->triple;
+        $validated['quad'] = $request->quad;
         $validated['departureDate'] = Carbon::parse($request->departureDate);
 
         if ($validated['departureDate'] < Carbon::now()) {
@@ -128,19 +135,22 @@ class AdminController extends Controller
 // eND sCHEDULE
     
 // REGISTRANT
-    public function registrantIndex()
+    public function registrantIndex(Request $request)
     {
-        return view('pages.admin.registrant.index', [
-            'registrants' => Registrant::paginate(20)
-        ]);
-    }
+        $registrant = Registrant::paginate(20);
 
-    public function registrantSearch(Request $request)
-    {
-        $results = Registrant::where('name', 'like',"%".$request->keyword."%")->paginate(20);
+        if ($request->by == "nama") {
+            $registrant = Registrant::where('name', 'like',"%".$request->keyword."%")->paginate(20);
+        }
+        if ($request->by == "paket") {
+            $registrant = Registrant::where('packet', 'like',"%".$request->keyword."%")->paginate(20);
+        }
+        if ($request->by == "tipe") {
+            $registrant = Registrant::where('number_of_registrans', 'like',"%".$request->keyword."%")->paginate(20);
+        }
 
         return view('pages.admin.registrant.index', [
-            'registrants' => $results
+            'registrants' => $registrant
         ]);
     }
 

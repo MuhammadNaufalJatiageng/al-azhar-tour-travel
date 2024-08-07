@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AffiliateProfile;
+use App\Models\Aggrement;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -12,7 +13,9 @@ class AuthenticationController extends Controller
 {
     public function affiliateRegisterIndex()
     {
-        return view('pages.authenticate.affiliate-register');
+        return view('pages.authenticate.affiliate-register', [
+            "aggAff" => Aggrement::where('for', "affiliate")->first(),
+        ]);
     }
 
     public function affiliateLoginIndex()

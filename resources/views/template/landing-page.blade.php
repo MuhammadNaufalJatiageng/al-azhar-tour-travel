@@ -57,9 +57,11 @@
 
     <!-- Banner -->
     <section class="banner">
-      <div class="banner-wrapper">
-        <div class="overlay"></div>
-      </div>
+      <a href="/daftar">
+        <div class="banner-wrapper">
+          <div class="overlay"></div>
+        </div>
+      </a>
     </section>
 
     @yield('content')

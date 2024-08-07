@@ -26,8 +26,10 @@
                     <thead>
                         <tr>
                             <th>Judul</th>
-                            <th>Tanggal Keberangkatan</th>
-                            <th>Harga</th>
+                            <th>Keberangkatan</th>
+                            <th>Double</th>
+                            <th>Triple</th>
+                            <th>Quad</th>
                             <th>Maskapai</th>
                             <th>Kategori</th>
                             <th>Hotel Mekkah</th>
@@ -41,14 +43,16 @@
                             @foreach ($products as $product)
                                 <tr>
                                     <td>{{ $product->title }}</td>
-                                    <td>{{ $product->departureDate }}</td>
-                                    <td>{{ $product->price }}</td>
+                                    <td>{{ date('d-m-Y', strtotime($product->departureDate)) }}</td>
+                                    <td>{{ $product->double }}</td>
+                                    <td>{{ $product->triple }}</td>
+                                    <td>{{ $product->quad }}</td>
                                     <td>{{ $product->airline }}</td>
                                     <td>{{ $product->category->name }}</td>
                                     <td>{{ $product->hotelMekkah }}</td>
                                     <td>{{ $product->hotelMadinah }}</td>
-                                    <td>
-                                        <a href="{{ asset('storage/'. $product->poster) }}" download>{{ $product->poster }}</a>
+                                    <td class="text-center">
+                                        <a href="{{ asset('storage/'. $product->poster) }}" class="btn btn-secondary" download>Download</a>
                                     </td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/schedule/detail/{{ $product->id }}" class="btn btn-info">Detail</a>

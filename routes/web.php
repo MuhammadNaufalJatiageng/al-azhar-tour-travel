@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AffiliateProfileController;
+use App\Http\Controllers\AggrementController;
 use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\LandingPage;
@@ -32,24 +33,6 @@ Route::get("/migrate", function(){
         // Return a response
         return response()->json(['message' => 'Database migrated and seeded successfully']);
 });
-
-Route::get("/storage", function(){
-    // Define the paths for the symbolic link
-            $target = public_path('storage');
-            $link = storage_path('../public_html/storage');
-    
-            // Check if the symbolic link already exists
-            if (!file_exists($target)) {
-                // Create the symbolic link
-                symlink($link, $target);
-                $message = 'Symbolic link created successfully!';
-            } else {
-                $message = 'Symbolic link already exists.';
-            }
-    
-            // Return a response
-            return Response::json(['message' => $message]);
-    });
 
 Route::get('/', function () {
     $products = Product::all();
@@ -101,6 +84,8 @@ Route::middleware('auth')->group(function () {
     Route::post('/logout', [AuthenticationController::class, 'logout']);
     // Admin
     Route::get('/admin/dashboard', [AdminController::class, 'index']);
+    // Admin Aggrement
+    Route::put('/admin/aggrement/{id}', [AggrementController::class, 'update']);
     // Admin Category
     Route::post('/admin/category', [CategoryController::class, 'store']);
     Route::delete('/admin/category/{id}', [CategoryController::class, 'destroy']);
@@ -125,7 +110,6 @@ Route::middleware('auth')->group(function () {
     // Admin Pendaftar
     Route::get('/admin/pendaftar', [AdminController::class, 'registrantIndex']);
     Route::get('/admin/pendaftar/{id}', [AdminController::class, 'registrantShow']);
-    Route::post('/admin/pendaftar/search', [AdminController::class, 'registrantSearch']);
     //  Admin Affiliate
     Route::get('/admin/affiliate', [AdminController::class, 'affiliateIndex']);
     Route::post('/admin/affiliate/search', [AdminController::class, 'affiliateSearch']);

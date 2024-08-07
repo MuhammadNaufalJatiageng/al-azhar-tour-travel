@@ -50,9 +50,9 @@
     <select class="form-select @error('packet')
         is-invalid
     @enderror" id="packet" name="packet" required>
-      <option selected hidden>Pilih Paket...</option>
+      <option selected hidden disabled>Pilih Paket...</option>
       @foreach ($products as $product)
-        <option value="{{ $product->title }}">{{ $product->title }}</option>
+        <option value="{{ $product->title }}" data-id="{{ $product->id }}">{{ $product->title }}</option>
       @endforeach
     </select>
     @error('packet')
@@ -62,21 +62,24 @@
     @enderror
   </div>
 {{-- Number Of Registrans --}}
-  <div class="input-group mb-3">
+  <div class="input-group mb-1">
     <label class="input-group-text" for="numOfRegistrans">Jumlah Pendaftar</label>
     <select class="form-select @error('numOfRegistrans')
         is-invalid
     @enderror" id="numOfRegistrans" name="numOfRegistrans" required>
-      <option value="1">Single ( 1 orang )</option>
-      <option value="2">Double ( 2 orang )</option>
-      <option value="3">Triple ( 3 orang )</option>
-      <option value="4">Quad ( 4 orang )</option>
+    <option value="4">Quad ( 1 kamar 4 orang )</option>
+      <option value="2">Double ( 1 kamar 2 orang )</option>
+      <option value="3">Triple ( 1 kamar 3 orang )</option>
     </select>
     @error('numOfRegistrans')
         <div class="invalid-feedback">
           {{ $message }}
         </div>
     @enderror
+  </div>
+
+  <div class="text-center mt-2">
+    <p id="pax"></p>
   </div>
 
   <div class="d-flex align-items-center gap-2">
@@ -89,6 +92,7 @@
   <button class="btn btn-primary d-block mx-auto mt-3" id="myButton" disabled>Ke Halaman Selanjutnya</button>
 </form> 
 
+
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered">
@@ -98,21 +102,7 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <ol>
-          <li>Mengisi formulir pendaftaran dengan data lengkap sesuai KTP/Paspor.</li>
-          <li>
-            Menyerahkan persyaratan sebagai berikut :
-            <div>
-              <ol type="a">
-                <li>Paspor RI</li>
-                <li>Copy KTP yang masih berlaku</li>
-                <li>Copy Kartu Keluarga</li>
-              </ol>
-            </div>
-          </li>
-          <li>Membayar uang muka sebesar USD 1000</li>
-        </ol>
-      </div>
+        {!! $aggHajj->body !!}
       <div class="modal-footer">
         <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
       </div>
@@ -124,4 +114,35 @@
 
 @section('script')
     <script src="{{ asset('js/checkbox.js') }}"></script>
+    <script>
+      let select = document.querySelector("#numOfRegistrans");
+      let packet = document.querySelector("#packet");
+      
+      var products = @json($products);
+
+      function price() {
+        let pax = document.querySelector("#pax");
+        let selectedOption = packet.options[packet.selectedIndex];
+        let id = selectedOption.getAttribute('data-id');
+        
+        
+        const result = products.filter((product) => product.id == id);
+
+        if (select.value == 2) {
+          price = result[0].double;
+        }
+        if (select.value == 3) {
+          price = result[0].triple;
+        }
+        if (select.value == 4) {
+          price = result[0].quad;
+        }
+
+        pax.innerHTML = `Harga per pax : ${price}`;
+      }
+
+      select.addEventListener("change", price);
+      packet.addEventListener("change", price);
+      
+    </script>
 @endsection

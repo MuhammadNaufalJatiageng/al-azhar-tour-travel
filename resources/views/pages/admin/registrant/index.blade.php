@@ -9,9 +9,16 @@
    <!-- DataTales -->
     <div class="card shadow my-4">
         <div class="card-header py-3">
-            <form class="d-flex col-md-6" action="/admin/pendaftar/search" method="POST">
-                @csrf
-                <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search" name="keyword">
+            <form class="d-flex col-md-6" action="/admin/pendaftar">
+                {{-- @csrf --}}
+                <div class="input-group">
+                    <input class="form-control w-25" type="search" placeholder="Search" aria-label="Search" name="keyword" value="{{ request('keyword') }}">
+                    <select class="form-select" name="by">
+                        <option value="nama" {{ request('by') == 'nama' ? 'selected' : '' }}>Nama</option>
+                        <option value="paket" {{ request('by') == 'paket' ? 'selected' : '' }}>Paket</option>
+                        <option value="tipe" {{ request('by') == 'tipe' ? 'selected' : '' }}>Tipe</option>
+                      </select>
+                </div>
                 <button class="btn btn-outline-primary" type="submit">Search</button>
             </form>
         </div>
@@ -24,7 +31,8 @@
                             <th>Email</th>
                             <th>Nomor Handphone</th>
                             <th>Paket</th>
-                            <th>Jumlah Peserta</th>
+                            <th>Tipe</th>
+                            <th>Peserta</th>
                             <th>Kode Affiliate</th>
                             <th>Opsi</th>
                         </tr>
@@ -38,6 +46,7 @@
                                     <td>{{ $registrant->phone_number }}</td>
                                     <td>{{ $registrant->packet }}</td>
                                     <td>{{ $registrant->number_of_registrans }}</td>
+                                    <td>{{ $registrant->registrantDetails->count() }}</td>
                                     <td>{{ $registrant->affiliate_code }}</td>
                                     <td class="d-flex justify-content-center gap-2">
                                         <a href="/admin/pendaftar/{{ $registrant->id }}" class="btn btn-info">Detail</a>

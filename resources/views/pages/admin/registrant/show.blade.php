@@ -26,7 +26,7 @@
                 <p>{{ $data->packet }}</p>
             </li>
             <li class="list-group-item">
-                <h5>Jumlah Peserta</h5>
+                <h5>Tipe Paket</h5>
                 <p>{{ $data->number_of_registrans }}</p>
             </li>
           </ul>

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\AffiliateProfile;
+use App\Models\Aggrement;
 use App\Models\Product;
 use App\Models\Registrant;
 use App\Models\RegistrantDetail;
@@ -14,7 +15,8 @@ class RegistrantController extends Controller
     {
         return view('pages.user.first-form', [
             'affiliateCode' => $affiliateCode, 
-            'products' => Product::where('status', true)->get()
+            'products' => Product::where('status', true)->get(),
+            "aggHajj" => Aggrement::where('for', "haji dan umrah")->first(),
         ]);
     }
 
@@ -48,7 +50,18 @@ class RegistrantController extends Controller
         $registrant['email'] = $request->email;
         $registrant['phone_number'] = $request->phone_number;
         $registrant['packet'] = $request->packet;
-        $registrant['number_of_registrans'] = $request->numOfRegistrans;
+
+        if ($request->numOfRegistrans == 2) {
+            $type = 'double';
+        }
+        if ($request->numOfRegistrans == 3) {
+            $type = 'triple';
+        }
+        if ($request->numOfRegistrans == 4) {
+            $type = 'quad';
+        }
+
+        $registrant['number_of_registrans'] = $type;
         
         if ($request->affiliate_code) 
         {
@@ -73,9 +86,11 @@ class RegistrantController extends Controller
         $names = $request->name;
 
         foreach ($names as $name) {
-            $registDetail['name'] = $name;
-            $registDetail['registrant_id'] = $newRegistrans->id;
-            RegistrantDetail::create($registDetail);
+            if ($name) {
+                $registDetail['name'] = $name;
+                $registDetail['registrant_id'] = $newRegistrans->id;
+                RegistrantDetail::create($registDetail);
+            }
         };
 
 

@@ -15,7 +15,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('category_id');
             $table->string('title');
-            $table->string('price');
+            $table->string('double');
+            $table->string('triple');
+            $table->string('quad');
             $table->string('departureDate');
             $table->string('poster');
             $table->string('hotelMekkah');

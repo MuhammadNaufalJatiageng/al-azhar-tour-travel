@@ -73,19 +73,7 @@
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
-          <ol>
-            <li>Mengisi formulir pendaftaran dengan data lengkap sesuai KTP/Paspor.</li>
-            <li>
-              Menyerahkan persyaratan sebagai berikut :
-              <div>
-                <ol type="a">
-                  <li>Paspor RI</li>
-                  <li>Copy KTP yang masih berlaku</li>
-                  <li>Copy Kartu Keluarga</li>
-                </ol>
-              </div>
-            </li>
-          </ol>
+          {!! $aggAff->body !!}
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-primary" data-bs-dismiss="modal">Tutup</button>
